@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- stock.picking inherit form view -->
+        <record id="stock_picking_inh_form_view_id" model="ir.ui.view">
+            <field name="name">stock.picking.inherit.view.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- Add your xpath here -->
+                <field name="origin" position="after">
+                    <field name="technical"/>
+                </field>
+
+                
+            </field>
+        </record>
+
+        
+    </data>
+</odoo>
