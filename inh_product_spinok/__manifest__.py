@@ -1,5 +1,5 @@
 {
-    'name': 'Modificacion de producto',
+    'name': 'Modificacion de producto ',
     'category': 'stock',
     'license': 'LGPL-3',
     'depends': ['product', 'contacts', 'account', 'stock'],
