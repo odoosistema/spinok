@@ -1,0 +1,44 @@
+name: ${PROJECT_NAME:-odoo-dev}
+services:
+  vscode:
+    container_name: ${PROJECT_NAME:-odoo-dev}-vscode
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - ENTERPRISE_ACCESS_TOKEN=${ENTERPRISE_ACCESS_TOKEN:?error}
+        - ODOO_BRANCH=18
+    depends_on:
+      - odoo_db
+    ports:
+      - "8069:8069"
+    volumes:
+      # Odoo web data volume
+      - odoo-web-data:/var/lib/odoo
+      - type: bind
+        source: ..
+        target: /mnt/extra-addons
+    environment:
+      - SHELL=/bin/bash
+      - HOST=odoo_db
+      - USER=odoo
+      - PASSWORD=odoo
+    restart: unless-stopped
+    entrypoint: [ "/bin/bash", "-c", "while sleep 1000; do :; done" ]
+  odoo_db:
+    container_name: ${PROJECT_NAME:-odoo-dev}-db
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+    restart: unless-stopped
+
+volumes:
+  odoo-db-data:
+  odoo-web-data:

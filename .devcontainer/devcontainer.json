@@ -1,0 +1,87 @@
+{
+    "name": "SpinkOK",
+    // The order of the files is important since later files override previous ones
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
+    "service": "vscode",
+    "runServices": [
+        "vscode"
+    ],
+    "shutdownAction": "stopCompose",
+    "updateContentCommand": "bash /updateContentCommand.sh",
+    "postCreateCommand": "bash /postCreateCommand.sh",
+    "workspaceFolder": "/mnt/extra-addons",
+    "forwardPorts": [
+        8069
+    ],
+    "portsAttributes": {
+        "8069": {
+            "label": "odoo"
+        }
+    },
+    "customizations": {
+        "codespaces": {
+            "repositories": {
+                "Addval-Connect/odoo-addval-modules": {
+                    "permissions": "write-all"
+                }
+            }
+        },
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "charliermarsh.ruff",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "mhutchie.git-graph",
+                "davidanson.vscode-markdownlint",
+                "ms-azuretools.vscode-docker",
+                "shardulm94.trailing-spaces",
+                "Gruntfuggly.todo-tree",
+                "bierner.emojisense",
+                "stkb.rewrap",
+                "vscode-icons-team.vscode-icons",
+                "github.vscode-pull-request-github",
+                "redhat.vscode-xml",
+                "bajdzis.vscode-database",
+                "IBM.output-colorizer",
+                "mohsen1.prettify-json",
+                "mechatroner.rainbow-csv",
+                "trinhanhngoc.vscode-odoo",
+                "berublan.vscode-log-viewer"
+            ],
+            "settings": {
+                "files.eol": "\n",
+                "editor.formatOnSave": true,
+                "editor.formatOnSaveMode": "file",
+                "editor.codeActionsOnSave": {
+                    "source.organizeImports": "always"
+                },
+                "python.editor.defaultFormatter": "charliermarsh.ruff",
+                "python.analysis.autoImportCompletions": true,
+                "python.analysis.typeCheckingMode": "standard",
+                "python.analysis.extraPaths": [
+                    "/mnt/extra-addons",
+                    "mnt/extra-addons/Addval-Connect/odoo-addval-modules",
+                    "/usr/lib/python3/dist-packages/odoo",
+                    "/usr/lib/python3/dist-packages/odoo/enterprise"
+                ],
+                "python.languageServer": "None",
+                "logViewer.watch": [
+                    {
+                        "title": "Odoo Logs",
+                        "pattern": "/var/lib/odoo/log/*.log"
+                    }
+                ],
+                "json.format.enable": true,
+                "githubPullRequests.ignoredPullRequestBranches": [
+                    "17.0"
+                ],
+                "xml.format.emptyElements": "collapse",
+                "xml.format.closingBracketNewLine": true,
+                "scm.showHistoryGraph": false
+            }
+        }
+    }
+}
