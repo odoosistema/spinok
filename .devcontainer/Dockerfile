@@ -39,6 +39,7 @@ RUN apt-get update && \
     python3-watchdog \
     python3-xlrd \
     python3-xlwt \
+    python3-debugpy \
     xz-utils && \
     if [ -z "${TARGETARCH}" ]; then \
     TARGETARCH="$(dpkg --print-architecture)"; \
@@ -118,7 +119,8 @@ COPY --chmod=755 ./postCreateCommand.sh /
 COPY --chmod=755 ./updateContentCommand.sh /
 COPY --chmod=755 ./wait-for-psql.py /usr/local/bin/wait-for-psql.py
 
-ENV PATH="/usr/lib/python3/dist-packages/odoo:${PATH}"
+ENV ODOO_PATH="/usr/lib/python3/dist-packages/odoo"
+ENV PATH="$ODOO_PATH:${PATH}"
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["odoo"]
