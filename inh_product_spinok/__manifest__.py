@@ -1,13 +1,14 @@
 {
-    'name': 'Modificacion de producto ',
-    'category': 'stock',
-    'license': 'LGPL-3',
-    'depends': ['product', 'contacts', 'account', 'stock'],
-    'data': [
-       'views/product_template_view.xml',
-       'views/stock_picking_view.xml',
-       'views/res_partner_view.xml'
+    "name": "Modificacion de producto ",
+    "version": "18.0.0.1",
+    "category": "stock",
+    "license": "LGPL-3",
+    "depends": ["product", "contacts", "account", "stock"],
+    "data": [
+        "views/product_template_view.xml",
+        "views/stock_picking_view.xml",
+        "views/res_partner_view.xml",
     ],
-    'installable': True,
-    'application': True,
+    "installable": True,
+    "application": True,
 }
