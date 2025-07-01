@@ -78,6 +78,7 @@ RUN apt-get -y install --no-install-recommends git ssh
 
 # Odoo Lsp requirement
 RUN pip install --break-system-packages pydevd-odoo
+RUN pip install --break-system-packages pdf417gen
 
 # Install Odoo Themes
 WORKDIR /usr/lib/python3/dist-packages
